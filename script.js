@@ -6,7 +6,7 @@ const allEmployees = []
 function init(){
 
   createManager();
-  //get html started
+  startHTML();
 
 }
 
@@ -185,39 +185,26 @@ function createIntern(){
   })
 }
 
-
-const generateHTML = (answers) =>
-  `<!DOCTYPE html>
+// get html started
+function startHTML () {
+  const html = `<!DOCTYPE html>
 <html lang="en">
 <head>
   <meta charset="UTF-8">
   <meta http-equiv="X-UA-Compatible" content="ie=edge">
   <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css">
-  <title>Document</title>
+  <title>Henry's Team</title>
 </head>
-<body>
-  <div class="jumbotron jumbotron-fluid">
-  <div class="container">
-    <h1 class="display-4">Hi! My name is ${answers.name}</h1>
-    <p class="lead">I am from ${answers.location}.</p>
-    <h3>Example heading <span class="badge badge-secondary">Contact Me</span></h3>
-    <ul class="list-group">
-      <li class="list-group-item">My GitHub username is ${answers.github}</li>
-      <li class="list-group-item">LinkedIn: ${answers.linkedin}</li>
-    </ul>
-  </div>
-</div>
-</body>
-</html>`;
+<body>`;
+  
+fs.writeFile('./dist/index.html', html, function(err) {
+  if (err){
+      console.log(err);
+  }
+});
 
-// Bonus using writeFileAsync as a promise
-const init = () => {
-  promptUser()
-    .then((answers) => writeFileAsync('index.html', generateHTML(answers)))
-    .then(() => console.log('Successfully wrote to index.html'))
-    .catch((err) => console.error(err));
-};
 
+}
 
 // start the process
 init();
