@@ -22,33 +22,27 @@ inquirer.prompt ([
     type: 'input',
     name: 'managerName',
     message: 'What is the managers name?',
-    // validate: answer => {
-    //     if (answer !== "") {
-    //       return true;
-    //     }
-    //     return "Please enter at least one character.";
-    //   }
+    
+
 },
 {
-      type: 'input',
-      name: 'managerId',
-      message: 'What is your managers id number?',
-    //   validate: answer => {
-    //     if (answer !== "" || answer !== [1-9]) {
-    //       return true;
-    //     }
-    //     return "Please enter at least one number.";
-    //   }
+    type: 'input',
+    name: 'managerId',
+    message: 'What is your managers id number?',
+    
+
 },
 {
-      type: 'input',
-      name: 'officeNumber',
-      message: 'What is your managers office number?',
+    type: 'input',
+    name: 'email',
+    message: 'What is your managers email?',
+      
 },
 {
-      type: 'input',
-      name: 'email',
-      message: 'What is your managers email?',
+    type: 'input',
+    name: 'officeNumber',
+    message: 'What is your managers office number?',
+
 },
 
 
@@ -59,6 +53,7 @@ inquirer.prompt ([
     const managerDetails = new Manager (answers.managerName, answers.managerId, answers.officeNumber, answers.email); 
     allEmployees.push(managerDetails);
     //idArray.push(answers.managerId)
+    
     createTeam();
     
   });
@@ -73,12 +68,12 @@ function createTeam(){
       type: 'list',
             name: 'choice',
             message: 'Which team member would you like to add?',
-            choices: ["engineer", "intern", "I don't want to add any more staff."]
-      },
+            choices: ["engineer", "intern", "I dont want to add any more staff."]
+    },
   ])
 
   .then((answers) => {
-    switch(answers.choices) {
+    switch(answers.choice) {
       case "engineer":
         createEngineer();
         break;
@@ -86,7 +81,7 @@ function createTeam(){
         createIntern();
         break;
       default: 
-      finishTeam();
+       createTeam();
       
     }
    
@@ -102,33 +97,30 @@ function createEngineer(){
       type: 'input',
       name: 'engineerName',
       message: 'What is the engineers name?',
-      // validate: answer => {
-      //     if (answer !== "") {
-      //       return true;
-      //     }
-      //     return "Please enter at least one character.";
-      //   }
+      
+
   },
   {
-        type: 'input',
-        name: 'engineerId',
-        message: 'What is your engineers id number?',
+      type: 'input',
+      name: 'engineerId',
+      message: 'What is your engineers id number?',
 
 
   },
-
-        {type: 'input',
-        name: 'engineerEmail',
-        message: 'What is the engineers email?',
+  {
+      type: 'input',
+      name: 'engineerEmail',
+      message: 'What is the engineers email?',
         
-    },
-    
-    
-    {
-          type: 'input',
-          name: 'engineerGithub',
-          message: 'What is your engineers github?',
-    },
+  },
+  {
+      type: 'input',
+      name: 'engineerGithub',
+      message: 'What is your engineers github?',
+
+  },
+
+
   ])
 
   .then((answers) => {
@@ -150,12 +142,8 @@ function createIntern(){
       type: 'input',
       name: 'internName',
       message: 'What is the interns name?',
-      // validate: answer => {
-      //     if (answer !== "") {
-      //       return true;
-      //     }
-      //     return "Please enter at least one character.";
-      //   }
+      
+
   },
   {
         type: 'input',
@@ -191,7 +179,7 @@ function createIntern(){
 }
 
 // get html started
-function finishTeam () {
+function startHTML () {
   const html = `<!DOCTYPE html>
 <html lang="en">
 <head>
