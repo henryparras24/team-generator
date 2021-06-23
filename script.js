@@ -195,7 +195,7 @@ function startHTML () {
   <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css">
   <title>Henry's Team</title>
 </head>
-<body>`;
+<body> ${addEmployeeCard()}`;
   
 fs.writeFile('./dist/index.html', html, function(err) {
   if (err){
@@ -205,6 +205,15 @@ fs.writeFile('./dist/index.html', html, function(err) {
 
 
 }
+
+
+
+// function addEmployeeCard(){
+  //const employeeCard = ``;
+       // return `${managerDetails.getOffice()}`
+// }
+
+
 
 // start the process
 init();
