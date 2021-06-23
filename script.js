@@ -1,12 +1,17 @@
 const inquirer = require('inquirer');
 const fs = require('fs');
-const { isTypedArray } = require('util/types');
+//const { isTypedArray } = require('util/types');
 const allEmployees = []
+
+const Manager = require('./lib/Manager');
+const Engineer = require('./lib/Engineer');
+const Intern = require('./lib/Intern');
+const Employee = require('./lib/Employee');
 
 function init(){
 
   createManager();
-  startHTML();
+  
 
 }
 
@@ -186,7 +191,7 @@ function createIntern(){
 }
 
 // get html started
-function startHTML () {
+function finishTeam () {
   const html = `<!DOCTYPE html>
 <html lang="en">
 <head>
@@ -195,7 +200,12 @@ function startHTML () {
   <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css">
   <title>Henry's Team</title>
 </head>
-<body> ${addEmployeeCard()}`;
+<body> 
+${addEmployeeCard()}
+</body>
+</html>
+
+`;
   
 fs.writeFile('./dist/index.html', html, function(err) {
   if (err){
@@ -208,10 +218,43 @@ fs.writeFile('./dist/index.html', html, function(err) {
 
 
 
-// function addEmployeeCard(){
-  //const employeeCard = ``;
-       // return `${managerDetails.getOffice()}`
-// }
+ function addEmployeeCard(allEmployees){
+     let employeeCard = ``;
+     allEmployees.forEach(allEmployees => {
+        employeeCard += `
+        <div class="card text-white bg-primary mb-3" style="max-width: 18rem;">
+          <div class="card-header">Header</div>
+            <div class="card-body">
+              <h4> ${employee.name} </h4>
+              <h5 class="card-title">${employee.getRole()}</h5>
+              <ul>
+                <li>${employee.id}</li>
+                <li>${employee.email}</li>
+                <li>${roleInfo()}</li>
+              </ul>
+            </div>
+          </div>
+        </div>
+        `
+      })
+        return `${managerDetails.getOffice()}`
+ }
+
+function roleInfo(employee){
+      if (employee.getRole() === "manager"){
+
+        return employee.getOffice();
+        
+      } else if (employee.getRole() === "engineer"){
+
+        return employee.getGithub();
+        } else {
+
+          return employee.getSchool();
+        }
+      
+
+}
 
 
 
