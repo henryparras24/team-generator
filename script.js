@@ -80,8 +80,8 @@ function createTeam(){
       case "intern":
         createIntern();
         break;
-      default: 
-       createTeam();
+          default: 
+          startHTML();
       
     }
    
@@ -189,13 +189,17 @@ function startHTML () {
   <title>Henry's Team</title>
 </head>
 <body> 
-${addEmployeeCard()}
-</body>
+<div class="container">
+<div class="row">
+${addEmployeeCard(allEmployees)}
+</div>
+</div>
+<body>
 </html>
 
 `;
   
-fs.writeFile('./dist/index.html', html, function(err) {
+fs.writeFile('./index.html', html, function(err) {
   if (err){
       console.log(err);
   }
@@ -206,26 +210,25 @@ fs.writeFile('./dist/index.html', html, function(err) {
 
 
 
- function addEmployeeCard(allEmployees){
+ function addEmployeeCard(allEmployeesArray){
      let employeeCard = ``;
-     allEmployees.forEach(allEmployees => {
+     allEmployeesArray.forEach(employee => {
         employeeCard += `
-        <div class="card text-white bg-primary mb-3" style="max-width: 18rem;">
-          <div class="card-header">Header</div>
-            <div class="card-body">
-              <h4> ${employee.name} </h4>
-              <h5 class="card-title">${employee.getRole()}</h5>
-              <ul>
-                <li>${employee.id}</li>
-                <li>${employee.email}</li>
-                <li>${roleInfo()}</li>
-              </ul>
-            </div>
+          <div class="card text-white bg-primary col">
+            <h2> ${employee.name} </h2>
+            <ul>
+                <li> ${employee.getRole()} </li>
+                <li> ID#${employee.id} </li>
+                <li> ${employee.email} </li>
+                <li> ${roleInfo(employee)} </li>
+            </ul>
           </div>
-        </div>
         `
       })
-        return `${managerDetails.getOffice()}`
+      console.log(employeeCard);
+      
+      return employeeCard
+         
  }
 
 function roleInfo(employee){
@@ -248,3 +251,20 @@ function roleInfo(employee){
 
 // start the process
 init();
+
+
+// `
+//         <div class="card text-white bg-primary mb-3" style="max-width: 18rem;">
+//           <div class="card-header"></div>
+//             <div class="card-body">
+//               <h3>${employee.name}</h3>
+//               <h5 class="card-title">${employee.getRole()}</h5>
+//               <ul>
+//                 <li>ID#${employee.id}</li>
+//                 <li>${employee.email}</li>
+//                 <li>${roleInfo(employee)}</li>
+//               </ul>
+//             </div>
+//           </div>
+//         </div>
+//         `
